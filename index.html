@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>履歷表 / Curriculum Vitae</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <!-- Tailwind 配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                        secondary: '#36BFFA',
+                        accent: '#FF7D00',
+                        dark: '#1D2939',
+                        light: '#F9FAFB'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .card-hover {
+                transition: all 0.3s ease;
+            }
+            .card-hover:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            }
+            .fade-in {
+                animation: fadeIn 0.5s ease-in-out;
+            }
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+            /* 手机端优化样式 */
+            .mobile-hidden {
+                @apply hidden md:block;
+            }
+            .desktop-hidden {
+                @apply block md:hidden;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-dark">
+    <div class="container mx-auto px-4 py-6 max-w-5xl">
+        <!-- 个人信息区域 -->
+        <section class="mb-10 bg-white rounded-xl shadow-lg p-6 md:p-8 card-hover">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                <div>
+                    <h1 class="text-[clamp(1.5rem,5vw,2.2rem)] font-bold text-primary mb-3">連奕雄</h1>
+                    <h2 class="text-[clamp(1rem,3vw,1.3rem)] font-medium text-dark/80 mb-4">Java開發工程師 / Java Development Engineer</h2>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="flex items-center mb-2 md:mb-0">
+                            <i class="fa fa-envelope text-primary mr-2"></i>
+                            <span>example@email.com</span>
+                        </div>
+                        <div class="flex items-center mb-2 md:mb-0">
+                            <i class="fa fa-phone text-primary mr-2"></i>
+                            <span>+852 1234 5678</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fa fa-map-marker text-primary mr-2"></i>
+                            <span>香港九龍尖沙咀</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden border-4 border-primary/20 shadow-md mx-auto md:mx-0">
+                    <img src="https://picsum.photos/200/200" alt="連奕雄頭像" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </section>
+
+        <!-- 新增桌面端导航栏 -->
+        <div class="mobile-hidden bg-white rounded-xl shadow-lg p-6 mb-8">
+            <nav class="flex space-x-4">
+                <button id="chinese-btn-desktop" class="py-2.5 px-6 rounded-lg bg-primary text-white flex items-center transition-colors text-sm">
+                    <i class="fa fa-file-text-o mr-2 text-xs"></i>
+                    <span>中文履歷表</span>
+                </button>
+                <button id="english-btn-desktop" class="py-2.5 px-6 rounded-lg bg-gray-100 text-dark hover:bg-gray-200 transition-colors flex items-center text-sm">
+                    <i class="fa fa-file-text-o mr-2 text-xs"></i>
+                    <span>英文 CV</span>
+                </button>
+            </nav>
+        </div>
+
+        <div class="grid grid-cols-1 gap-8">
+            <!-- 左侧内容区域 - 手机端占满全宽 -->
+            <div class="space-y-8">
+                <!-- 中文简历部分 -->
+                <section id="chinese-resume" class="bg-white rounded-xl shadow-lg p-6 md:p-8 card-hover fade-in">
+                    <h2 class="text-xl font-bold text-primary mb-5 pb-3 border-b border-gray-200">
+                        <i class="fa fa-file-text-o mr-2"></i>履歷表
+                    </h2>
+
+                    <!-- 相关工作/实习经验 -->
+                    <div class="mb-7">
+                        <h3 class="text-lg font-semibold text-dark mb-4 flex items-center">
+                            <span class="w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center mr-2 text-sm">
+                                <i class="fa fa-briefcase text-primary text-xs"></i>
+                            </span>
+                            相關工作經驗
+                        </h3>
+                        
+                        <div class="space-y-5">
+                            <div class="border-l-2 border-primary pl-4 pt-1 pb-1">
+                                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                                    <h4 class="text-base font-semibold">Java開發工程師</h4>
+                                    <span class="text-primary/80 text-sm">2024年1月 - 至今</span>
+                                </div>
+                                <p class="text-dark/80 text-sm mb-2">上海凱斯領拓技術有限公司</p>
+                                <ul class="list-disc pl-5 text-dark/70 text-sm space-y-1">
+                                    <li>參與公司核心系統的架構設計與優化，提升系統性能和穩定性</li>
+                                    <li>負責開發和維護基於Spring Boot、MyBatis的企業級應用</li>
+                                    <li>與跨部門團隊合作，分析業務需求，提供技術解決方案</li>
+                                    <li>指導初級工程師，提高團隊整體技術水平</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="border-l-2 border-primary/50 pl-4 pt-1 pb-1">
+                                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                                    <h4 class="text-base font-semibold">高級Java開發工程師</h4>
+                                    <span class="text-primary/80 text-sm">2021年6月 - 2023年12月</span>
+                                </div>
+                                <p class="text-dark/80 text-sm mb-2">美聯物業代理（深圳）有限公司</p>
+                                <ul class="list-disc pl-5 text-dark/70 text-sm space-y-1">
+                                    <li>設計和開發物業管理系統，實現業主管理、物業收費等核心功能</li>
+                                    <li>引入微服務架構，優化系統架構，提高系統可維護性和可擴展性</li>
+                                    <li>建立和完善CI/CD流程，提高開發效率和質量</li>
+                                    <li>參與技術研發，探索新技術在項目中的應用</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="border-l-2 border-primary/40 pl-4 pt-1 pb-1">
+                                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                                    <h4 class="text-base font-semibold">Java開發工程師</h4>
+                                    <span class="text-primary/80 text-sm">2020年9月 - 2021年5月</span>
+                                </div>
+                                <p class="text-dark/80 text-sm mb-2">深圳市易聯訊飛科技有限公司</p>
+                                <ul class="list-disc pl-5 text-dark/70 text-sm space-y-1">
+                                    <li>參與金融科技平台的開發，負責支付模塊的設計與實現</li>
+                                    <li>優化系統性能，解決高並發場景下的性能瓶頸</li>
+                                    <li>撰寫技術文檔，確保代碼規範和可維護性</li>
+                                    <li>與測試團隊合作，定位和解決系統缺陷</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 学历、专业资格 -->
+                    <div class="mb-7">
+                        <h3 class="text-lg font-semibold text-dark mb-4 flex items-center">
+                            <span class="w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center mr-2 text-sm">
+                                <i class="fa fa-graduation-cap text-primary text-xs"></i>
+                            </span>
+                            學歷
+                        </h3>
+                        
+                        <div class="space-y-5">
+                            <div class="border-l-2 border-primary pl-4 pt-1 pb-1">
+                                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                                    <h4 class="text-base font-semibold">計算機科學與技術</h4>
+                                    <span class="text-primary/80 text-sm">2023年</span>
+                                </div>
+                                <p class="text-dark/80 text-sm mb-2">湘潭大學（函授本科）</p>
+                            </div>
+                            
+                            <div class="border-l-2 border-primary/50 pl-4 pt-1 pb-1">
+                                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                                    <h4 class="text-base font-semibold">軟件工程</h4>
+                                    <span class="text-primary/80 text-sm">2017年</span>
+                                </div>
+                                <p class="text-dark/80 text-sm mb-2">汕頭大學（函授大專）</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 技能、语文能力 -->
+                    <div class="mb-7">
+                        <h3 class="text-lg font-semibold text-dark mb-4 flex items-center">
+                            <span class="w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center mr-2 text-sm">
+                                <i class="fa fa-cogs text-primary text-xs"></i>
+                            </span>
+                            技能
+                        </h3>
+                        
+                        <div class="grid grid-cols-1 gap-5">
+                            <div>
+                                <h4 class="text-base font-semibold mb-3">技術棧</h4>
+                                <div class="space-y-3">
+                                    <div>
+                                        <div class="flex justify-between mb-1 text-sm">
+                                            <span>Java & Spring Framework</span>
+                                            <span>95%</span>
+                                        </div>
+                                        <div class="w-full bg-gray-200 rounded-full h-2">
+                                            <div class="bg-primary h-2 rounded-full" style="width: 95%"></div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="flex justify-between mb-1 text-sm">
+                                            <span>數據庫設計與開發</span>
+                                            <span>90%</span>
+                                        </div>
+                                        <div class="w-full bg-gray-200 rounded-full h-2">
+                                            <div class="bg-primary h-2 rounded-full" style="width: 90%"></div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="flex justify-between mb-1 text-sm">
+                                            <span>微服務架構</span>
+                                            <span>85%</span>
+                                        </div>
+                                        <div class="w-full bg-gray-200 rounded-full h-2">
+                                            <div class="bg-primary h-2 rounded-full" style="width: 85%"></div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="flex justify-between mb-1 text-sm">
+                                            <span>前端開發(HTML/CSS/JS)</span>
+                                            <span>75%</span>
+                                        </div>
+                                        <div class="w-full bg-gray-200 rounded-full h-2">
+                                            <div class="bg-primary h-2 rounded-full" style="width: 75%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h4 class="text-base font-semibold mb-3">工具與平台</h4>
+                                <ul class="list-disc pl-5 text-dark/70 text-sm space-y-1">
+                                    <li>開發工具: Eclipse, IntelliJ IDEA, VS Code</li>
+                                    <li>版本控制: Git, SVN</li>
+                                    <li>構建工具: Maven, Gradle</li>
+                                    <li>容器化: Docker, Kubernetes</li>
+                                    <li>雲平台: AWS, 阿里云</li>
+                                    <li>數據庫: MySQL, Oracle, PostgreSQL</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 要求薪金、通知期/到职日期 -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-primary/5 p-4 rounded-lg">
+                            <h3 class="text-base font-semibold text-primary mb-2 flex items-center text-sm">
+                                <i class="fa fa-money mr-1.5 text-xs"></i>要求薪金
+                            </h3>
+                            <p class="text-dark/80 text-sm">港幣40,000 - 50,000元/月</p>
+                            <p class="text-dark/60 text-[10px] mt-1">可根據職位職責及公司福利協商</p>
+                        </div>
+                        
+                        <div class="bg-primary/5 p-4 rounded-lg">
+                            <h3 class="text-base font-semibold text-primary mb-2 flex items-center text-sm">
+                                <i class="fa fa-calendar mr-1.5 text-xs"></i>通知期／到職日期
+                            </h3>
+                            <p class="text-dark/80 text-sm">通知期：1個月</p>
+                            <p class="text-dark/80 text-sm">可到職日期：2024年7月1日</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 英文简历部分 -->
+                <section id="english-resume" class="bg-white rounded-xl shadow-lg p-6 md:p-8 card-hover hidden fade-in">
+                    <h2 class="text-xl font-bold text-primary mb-5 pb-3 border-b border-gray-200">
+                        <i class="fa fa-file-text-o mr-2"></i>Curriculum Vitae
+                    </h2>
+
+                    <!-- Summary or career objective -->
+                    <div class="mb-7">
+                        <h3 class="text-lg font-semibold text-dark mb-4 flex items-center">
+                            <span class="w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center mr-2 text-sm">
+                                <i class="fa fa-bullseye text-primary text-xs"></i>
+                            </span>
+                            Career Objective
+                        </h3>
+                        
+                        <p class="text-dark/80 text-sm leading-relaxed">
+                            Experienced Java Development Engineer with 8+ years of hands-on experience in software development, 
+                            system architecture, and team leadership. Proficient in Java, Spring Framework, and database design. 
+                            Seeking a challenging role to contribute technical expertise and drive innovation in enterprise-level applications.
+                        </p>
+                    </div>
+
+                    <!-- Work experience -->
+                    <div class="mb-7">
+                        <h3 class="text-lg font-semibold text-dark mb-4 flex items-center">
+                            <span class="w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center mr-2 text-sm">
+                                <i class="fa fa-briefcase text-primary text-xs"></i>
+                            </span>
+                            Work Experience
+                        </h3>
+                        
+                        <div class="space-y-5">
+                            <div class="border-l-2 border-primary pl-4 pt-1 pb-1">
+                                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                                    <h4 class="text-base font-semibold">Java Development Engineer</h4>
+                                    <span class="text-primary/80 text-sm">Jan 2024 - Present</span>
+                                </div>
+                                <p class="text-dark/80 text-sm mb-2">Shanghai CaseLink Technology Co., Ltd.</p>
+                                <ul class="list-disc pl-5 text-dark/70 text-sm space-y-1">
+                                    <li>Participated in the architecture design and optimization of the company's core systems</li>
+                                    <li>Responsible for the development and maintenance of enterprise applications based on Spring Boot and MyBatis</li>
+                                    <li>Collaborated with cross-functional teams to analyze business requirements and provide technical solutions</li>
+                                    <li>Mentored junior engineers to improve the overall technical level of the team</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="border-l-2 border-primary/50 pl-4 pt-1 pb-1">
+                                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                                    <h4 class="text-base font-semibold">Senior Java Development Engineer</h4>
+                                    <span class="text-primary/80 text-sm">Jun 2021 - Dec 2023</span>
+                                </div>
+                                <p class="text-dark/80 text-sm mb-2">Midland Realty Agency (Shenzhen) Co., Ltd.</p>
+                                <ul class="list-disc pl-5 text-dark/70 text-sm space-y-1">
+                                    <li>Designed and developed a property management system, implementing core functions such as owner management and property fee collection</li>
+                                    <li>Introduced microservices architecture to optimize system architecture and improve system maintainability and scalability</li>
+                                    <li>Established and improved CI/CD processes to enhance development efficiency and quality</li>
+                                    <li>Participated in technology research and development to explore the application of new technologies in projects</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Education or academic background -->
+                    <div class="mb-7">
+                        <h3 class="text-lg font-semibold text-dark mb-4 flex items-center">
+                            <span class="w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center mr-2 text-sm">
+                                <i class="fa fa-graduation-cap text-primary text-xs"></i>
+                            </span>
+                            Education
+                        </h3>
+                        
+                        <div class="space-y-5">
+                            <div class="border-l-2 border-primary pl-4 pt-1 pb-1">
+                                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                                    <h4 class="text-base font-semibold">Computer Science and Technology</h4>
+                                    <span class="text-primary/80 text-sm">2023</span>
+                                </div>
+                                <p class="text-dark/80 text-sm mb-2">Xiangtan University (Correspondence Undergraduate)</p>
+                            </div>
+                            
+                            <div class="border-l-2 border-primary/50 pl-4 pt-1 pb-1">
+                                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                                    <h4 class="text-base font-semibold">Software Engineering</h4>
+                                    <span class="text-primary/80 text-sm">2017</span>
+                                </div>
+                                <p class="text-dark/80 text-sm mb-2">Shantou University (Correspondence College)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Qualifications and skills -->
+                    <div class="mb-7">
+                        <h3 class="text-lg font-semibold text-dark mb-4 flex items-center">
+                            <span class="w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center mr-2 text-sm">
+                                <i class="fa fa-cogs text-primary text-xs"></i>
+                            </span>
+                            Skills
+                        </h3>
+                        
+                        <div class="grid grid-cols-1 gap-5">
+                            <div>
+                                <h4 class="text-base font-semibold mb-3">Technical Stack</h4>
+                                <div class="space-y-3">
+                                    <div>
+                                        <div class="flex justify-between mb-1 text-sm">
+                                            <span>Java & Spring Framework</span>
+                                            <span>95%</span>
+                                        </div>
+                                        <div class="w-full bg-gray-200 rounded-full h-2">
+                                            <div class="bg-primary h-2 rounded-full" style="width: 95%"></div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="flex justify-between mb-1 text-sm">
+                                            <span>Database Design & Development</span>
+                                            <span>90%</span>
+                                        </div>
+                                        <div class="w-full bg-gray-200 rounded-full h-2">
+                                            <div class="bg-primary h-2 rounded-full" style="width: 90%"></div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="flex justify-between mb-1 text-sm">
+                                            <span>Microservices Architecture</span>
+                                            <span>85%</span>
+                                        </div>
+                                        <div class="w-full bg-gray-200 rounded-full h-2">
+                                            <div class="bg-primary h-2 rounded-full" style="width: 85%"></div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="flex justify-between mb-1 text-sm">
+                                            <span>Frontend Development (HTML/CSS/JS)</span>
+                                            <span>75%</span>
+                                        </div>
+                                        <div class="w-full bg-gray-200 rounded-full h-2">
+                                            <div class="bg-primary h-2 rounded-full" style="width: 75%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h4 class="text-base font-semibold mb-3">Tools & Platforms</h4>
+                                <ul class="list-disc pl-5 text-dark/70 text-sm space-y-1">
+                                    <li>Development Tools: Eclipse, IntelliJ IDEA, VS Code</li>
+                                    <li>Version Control: Git, SVN</li>
+                                    <li>Build Tools: Maven, Gradle</li>
+                                    <li>Containerization: Docker, Kubernetes</li>
+                                    <li>Cloud Platforms: AWS, Alibaba Cloud</li>
+                                    <li>Databases: MySQL, Oracle, PostgreSQL</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Expected salary and availability -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-primary/5 p-4 rounded-lg">
+                            <h3 class="text-base font-semibold text-primary mb-2 flex items-center text-sm">
+                                <i class="fa fa-money mr-1.5 text-xs"></i>Expected Salary
+                            </h3>
+                            <p class="text-dark/80 text-sm">HK$40,000 - 50,000 per month</p>
+                            <p class="text-dark/60 text-[10px] mt-1">Negotiable based on responsibilities and benefits</p>
+                        </div>
+                        
+                        <div class="bg-primary/5 p-4 rounded-lg">
+                            <h3 class="text-base font-semibold text-primary mb-2 flex items-center text-sm">
+                                <i class="fa fa-calendar mr-1.5 text-xs"></i>Availability
+                            </h3>
+                            <p class="text-dark/80 text-sm">Notice Period: 1 month</p>
+                            <p class="text-dark/80 text-sm">Available Start Date: July 1, 2024</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- 右侧内容区域 - 手机端移至底部 -->
+            <div class="space-y-8 desktop-hidden">
+                <!-- 导航栏 -->
+                <div class="bg-white rounded-xl shadow-lg p-6 sticky top-4">
+                    <h3 class="text-lg font-bold text-primary mb-4">快速導航</h3>
+                    <nav class="space-y-2">
+                        <button id="chinese-btn-mobile" class="w-full py-2.5 px-4 rounded-lg bg-primary text-white flex items-center justify-center transition-colors text-sm">
+                            <i class="fa fa-file-text-o mr-2 text-xs"></i>
+                            <span>中文履歷表</span>
+                        </button>
+                        <button id="english-btn-mobile" class="w-full py-2.5 px-4 rounded-lg bg-gray-100 text-dark hover:bg-gray-200 transition-colors flex items-center justify-center text-sm">
+                            <i class="fa fa-file-text-o mr-2 text-xs"></i>
+                            <span>英文 CV</span>
+                        </button>
+                    </nav>
+                    
+                    <div class="mt-6 pt-4 border-t border-gray-200">
+                        <h3 class="text-base font-semibold text-dark mb-3">聯繫方式</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center">
+                                <i class="fa fa-envelope text-primary w-5 text-center mr-2 text-xs"></i>
+                                <span class="text-sm">example@email.com</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fa fa-phone text-primary w-5 text-center mr-2 text-xs"></i>
+                                <span class="text-sm">+852 1234 5678</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fa fa-map-marker text-primary w-5 text-center mr-2 text-xs"></i>
+                                <span class="text-sm">香港九龍尖沙咀</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <h3 class="text-base font-semibold text-dark mb-3 text-sm">社交媒體</h3>
+                        <div class="flex space-x-2 justify-center">
+                            <a href="#" class="w-8 h-8 rounded-full bg-[#0A66C2] flex items-center justify-center text-white hover:bg-opacity-90 transition-colors text-xs">
+                                <i class="fa fa-linkedin"></i>
+                            </a>
+                            <a href="#" class="w-8 h-8 rounded-full bg-[#25D366] flex items-center justify-center text-white hover:bg-opacity-90 transition-colors text-xs">
+                                <i class="fa fa-whatsapp"></i>
+                            </a>
+                            <a href="#" class="w-8 h-8 rounded-full bg-[#EA4335] flex items-center justify-center text-white hover:bg-opacity-90 transition-colors text-xs">
+                                <i class="fa fa-google"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-5">
+                        <button class="w-full py-2.5 px-4 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors flex items-center justify-center text-sm">
+                            <i class="fa fa-download mr-2 text-xs"></i>
+                            <span>下載 PDF 版本</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 页脚 -->
+        <footer class="mt-10 text-center text-dark/50 text-xs">
+            <p>© 2024 連奕雄. 保留所有權利.</p>
+        </footer>
+    </div>
+
+    <script>
+        // 获取DOM元素
+        const chineseBtnDesktop = document.getElementById('chinese-btn-desktop');
+        const englishBtnDesktop = document.getElementById('english-btn-desktop');
+        const chineseBtnMobile = document.getElementById('chinese-btn-mobile');
+        const englishBtnMobile = document.getElementById('english-btn-mobile');
+        const chineseResume = document.getElementById('chinese-resume');
+        const englishResume = document.getElementById('english-resume');
+
+        // 初始显示中文简历
+        chineseResume.classList.remove('hidden');
+        englishResume.classList.add('hidden');
+
+        // 切换简历语言的函数
+        function showChineseResume() {
+            chineseResume.classList.remove('hidden');
+            englishResume.classList.add('hidden');
+            
+            // 更新所有按钮样式
+            chineseBtnDesktop.classList.remove('bg-gray-100', 'text-dark');
+            chineseBtnDesktop.classList.add('bg-primary', 'text-white');
+            chineseBtnMobile.classList.remove('bg-gray-100', 'text-dark');
+            chineseBtnMobile.classList.add('bg-primary', 'text-white');
+            
+            englishBtnDesktop.classList.remove('bg-primary', 'text-white');
+            englishBtnDesktop.classList.add('bg-gray-100', 'text-dark');
+            englishBtnMobile.classList.remove('bg-primary', 'text-white');
+            englishBtnMobile.classList.add('bg-gray-100', 'text-dark');
+        }
+
+        function showEnglishResume() {
+            englishResume.classList.remove('hidden');
+            chineseResume.classList.add('hidden');
+            
+            // 更新所有按钮样式
+            englishBtnDesktop.classList.remove('bg-gray-100', 'text-dark');
+            englishBtnDesktop.classList.add('bg-primary', 'text-white');
+            englishBtnMobile.classList.remove('bg-gray-100', 'text-dark');
+            englishBtnMobile.classList.add('bg-primary', 'text-white');
+            
+            chineseBtnDesktop.classList.remove('bg-primary', 'text-white');
+            chineseBtnDesktop.classList.add('bg-gray-100', 'text-dark');
+            chineseBtnMobile.classList.remove('bg-primary', 'text-white');
+            chineseBtnMobile.classList.add('bg-gray-100', 'text-dark');
+        }
+
+        // 为所有按钮添加点击事件
+        chineseBtnDesktop.addEventListener('click', showChineseResume);
+        englishBtnDesktop.addEventListener('click', showEnglishResume);
+        chineseBtnMobile.addEventListener('click', showChineseResume);
+        englishBtnMobile.addEventListener('click', showEnglishResume);
+
+        // 悬停效果
+        document.querySelectorAll('.card-hover').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.classList.add('shadow-xl');
+            });
+            card.addEventListener('mouseleave', function() {
+                this.classList.remove('shadow-xl');
+            });
+        });
+
+        // PDF下载功能
+        document.querySelector('.fa-download').parentElement.addEventListener('click', function() {
+            alert('PDF下载功能将在实际部署中实现。在生产环境中，您可以使用jsPDF或html2pdf.js等库来实现简历的PDF导出功能。');
+        });
+    </script>
+</body>
+</html>
